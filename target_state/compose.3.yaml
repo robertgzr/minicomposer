@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  entry:
+    image: busybox:latest
+    command:
+        - sh
+        - -c
+        - while true; do sleep 600; done
+    networks:
+      - mynetwork
+    ports:
+      - 8080:8080
+  target:
+    image: busybox:latest
+    command:
+        - sh
+        - -c
+        - while true; do sleep 600; done
+    networks:
+      - mynetwork
+    environment:
+      - TESTVAR=1
+
+networks:
+  mynetwork:
